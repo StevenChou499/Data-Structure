@@ -28,8 +28,18 @@ void DeleteList(SqList *L);
 
 /* Print the entire list elements */
 void PrintList(SqList *L);
-element_t GetElem(SqList *L, int i, element_t *e);
+
+/* Get the element from ith place of the list */
+void GetElem(SqList *L, int i, element_t *e);
+
+/* Find the element e inside the list, return TRUE when found, else return FALSE */
 Status LocateElem(SqList *L, element_t e);
+
+/* Insert the element e in the ith place of list */
 void ListInsert(SqList *L, int i, element_t e);
+
+/* delete the ith place of the list and return the element */
 void ListDelete(SqList *L, int i, element_t *e);
+
+/* return the length of the list */
 int ListLength(SqList *L);
