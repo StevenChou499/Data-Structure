@@ -4,7 +4,18 @@
 Node_t *CreateList(Node_t **head, element_t e);
 
 /* Delete all the nodes in the linked list and turn head to NULL */
-void FreeList(Node_t **head);
+void FreeList(Node_t **head) {
+    if (!*head)
+        return;
+    Node_t *current = (*head)->next;
+    while (current != NULL) {
+        free(*head);
+        *head = current;
+        current = current->next;
+    }
+    *head = NULL;
+    return;
+}
 
 /* Return whether the linked list is empty */
 bool ListEmpty(Node_t **head);
