@@ -15,7 +15,7 @@ void ClearList(SqList *L) {
 
 /* If list is empty return TRUE, else return FALSE */
 bool ListEmpty(SqList *L) {
-    if (L->length > 0)
+    if (L->length == 0)
         return true;
     return false;
 }
@@ -54,7 +54,7 @@ Status LocateElem(SqList *L, element_t e) {
 /* Insert the element e in the ith place of list */
 void ListInsert(SqList *L, int i, element_t e) {
     if (i < 1 || i > MAXSIZE) {
-        fprintf(stderr, "Invalid array access, please enter the correct index\n");
+        fprintf(stderr, "Invalid array access, please enter the correct index.\n");
         return;
     }
         
@@ -63,16 +63,49 @@ void ListInsert(SqList *L, int i, element_t e) {
         return;
     }
 
-    int index = L->length - 1;
+    if (L->length + 1 < i) {
+        fprintf(stderr, "The length of array is now %d, but the insert position is %d, can't insert any unoccupied slots.\n", L->length, i);
+        return;
+    }
+
+    int index = L->length;
     for (; index > i; index--) {
         L->data[index - 1] == L->data[index];
     }
-    L->data[index - 1] = e;
+    L->data[index] = e;
+
+    if (i > L->length)
+        L->length++;
+    
     return;
 }
 
 /* delete the ith place of the list and return the element */
-void ListDelete(SqList *L, int i, element_t *e);
+void ListDelete(SqList *L, int i, element_t *e) {
+    if (i < 1 || i > MAXSIZE) {
+        fprintf(stderr, "Invalid array access, please enter the correct index.\n");
+        return;
+    }
+
+    if (L->length == 0) {
+        fprintf(stderr, "The array is now empty, can't delete any elements.\n");
+        return;
+    }
+
+    if (L->length < i) {
+        fprintf(stderr, "Can't delete any uninserted slots.\n");
+        return;
+    }
+
+    *e = L->data[i - 1];
+    for (int index = i; index < L->length; index++) {
+        L->data[index - 1] = L->data[index];
+    }
+    L->length--;
+
+    
+    return;
+}
 
 /* return the length of the list */
 int ListLength(SqList *L) {
