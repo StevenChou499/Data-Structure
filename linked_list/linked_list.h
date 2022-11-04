@@ -45,6 +45,9 @@ void ReverseList(Node_t **head);
 /* Sort the elements in the linked list */
 void SortList(Node_t **head);
 
+/* Using merge sort */
+Node_t *MergeSort(Node_t *head);
+
 /* Return the linked list length */
 unsigned int ListLength(Node_t **head);
 

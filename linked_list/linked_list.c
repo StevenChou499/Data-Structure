@@ -166,7 +166,65 @@ void ReverseList(Node_t **head) {
 }
 
 /* Sort the elements in the linked list */
-void SortList(Node_t **head);
+void SortList(Node_t **head) {
+    *head = MergeSort(*head);
+}
+
+/* Using merge sort */
+Node_t *MergeSort(Node_t *head) {
+    Node_t *left = head, *right = head;
+    while (right && right->next) {
+        left = left->next;
+        right = right->next->next;
+    }
+
+    if (left == right)
+        return left;
+
+    Node_t *tmp = head;
+
+    while (tmp->next != left)
+        tmp = tmp->next;
+    tmp->next = NULL;
+
+    right = left;
+    left = head;
+
+    left = MergeSort(left);
+    right = MergeSort(right);
+
+    // Now both left and right are sorted
+    if (left->data <= right->data) {
+        head = left;
+        left = left->next;
+    }
+    else {
+        head = right;
+        right = right->next;
+    }
+    
+    tmp = head;
+    
+    while (left && right) {
+        if (left->data <= right->data){
+            head->next = left;
+            left = left->next;
+        }
+        else {
+            head->next = right;
+            right = right->next;
+        }
+        head = head->next;
+    }
+
+    if (!left)
+        head->next = right;
+    
+    if (!right)
+        head->next = left;
+
+    return tmp;
+}
 
 /* Return the linked list length */
 unsigned int ListLength(Node_t **head) {
@@ -181,4 +239,37 @@ unsigned int ListLength(Node_t **head) {
 }
 
 /* Delete all the duplicate elements in the linked list (the list is sorted) */
-void DeleteDup(Node_t **head);
+void DeleteDup(Node_t **head) {
+    Node_t *tmp_head = malloc(sizeof(Node_t));
+    tmp_head->data = 0;
+    tmp_head->next = *head;
+
+    Node_t *detect = *head;
+    Node_t *hold = tmp_head;
+
+    while (detect != NULL) {
+        if (detect->data == detect->next->data) {
+            while (detect->data == detect->next->data) {
+                Node_t *tmp = detect->next->next;
+                free(detect->next);
+                detect->next = tmp;
+
+                if (!detect->next)
+                    break;
+            }
+
+            hold->next = detect->next;
+            free(detect);
+            detect = hold->next;
+
+            if (!detect)
+                return;
+        }
+
+        hold = detect;
+        detect = detect->next;
+    }
+
+    *head = tmp_head->next;
+    free(tmp_head);
+}
