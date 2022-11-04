@@ -38,6 +38,10 @@ int main(void)
 
     printf("The length of the list is %u.\n", ListLength(&head));
 
+    ReverseList(&head);
+
+    PrintList(&head);
+
     FreeList(&head);
     return 0;
 }

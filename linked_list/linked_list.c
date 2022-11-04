@@ -146,7 +146,24 @@ void Removetail(Node_t **head) {
 }
 
 /* Reverse all the nodes the linked list */
-void ReverseList(Node_t **head);
+void ReverseList(Node_t **head) {
+    if (!(*head) || (*head)->next == NULL)
+        return;
+    
+    Node_t *left = *head;
+    Node_t *mid = left->next;
+    Node_t *right = mid->next;
+    left->next = NULL;
+    while (right) {
+        mid->next = left;
+        left = mid;
+        mid = right;
+        right = right->next;
+    }
+    mid->next = left;
+    *head = mid;
+    return;
+}
 
 /* Sort the elements in the linked list */
 void SortList(Node_t **head);
@@ -163,11 +180,5 @@ unsigned int ListLength(Node_t **head) {
     return len;
 }
 
-/* Split the linked list by a specific node and return the second linked list head */
-Node_t * SplitList(Node_t **head, element_t e);
-
-/* Delete all the duplicate elements in the linked list */
+/* Delete all the duplicate elements in the linked list (the list is sorted) */
 void DeleteDup(Node_t **head);
-
-/* Concatenate two linked list and make the first argument list as head */
-void ConcatList(Node_t **head, Node_t **del_head);

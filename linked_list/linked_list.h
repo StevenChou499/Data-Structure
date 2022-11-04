@@ -48,11 +48,5 @@ void SortList(Node_t **head);
 /* Return the linked list length */
 unsigned int ListLength(Node_t **head);
 
-/* Split the linked list by a specific node and return the second linked list head */
-Node_t * SplitList(Node_t **head, element_t e);
-
-/* Delete all the duplicate elements in the linked list */
+/* Delete all the duplicate elements in the linked list (the list is sorted) */
 void DeleteDup(Node_t **head);
-
-/* Concatenate two linked list and make the first argument list as head */
-void ConcatList(Node_t **head, Node_t **del_head);
