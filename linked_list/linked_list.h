@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 typedef int element_t;
@@ -9,7 +10,7 @@ typedef struct Node {
 } Node_t;
 
 /* Create a linked list by receiving an element and return the head */
-Node_t *CreateList(Node_t **head, element_t e);
+Node_t *CreateList();
 
 /* Delete all the nodes in the linked list and turn head to NULL */
 void FreeList(Node_t **head);
@@ -32,8 +33,8 @@ void Inserttail(Node_t **head, element_t e);
 /* Delete the head element of the linked list */
 void Removehead(Node_t **head);
 
-/* Delete a specific node in the linked list */
-void ListDelete(Node_t **head, element_t e);
+/* Delete a specific position of node in the linked list, the position started with 0 */
+void DeletePos(Node_t **head, unsigned int position);
 
 /* Delete the tail element of the linked list */
 void Removetail(Node_t **head);
