@@ -134,14 +134,19 @@ void Removetail(Node_t **head) {
     if (!*head)
         return;
     
-    Node_t *tmp = *head;
-    while (tmp->next != NULL)
-        tmp = tmp->next;
-
-    if (tmp == *head)
+    if ((*head)->next == NULL) {
+        free(*head);
         *head = NULL;
+        return;
+    }
     
-    free(tmp);
+    Node_t *tmp = *head;
+    while (tmp->next->next != NULL)
+        tmp = tmp->next;
+    
+    Node_t *del = tmp->next;
+    tmp->next = del->next;
+    free(del);
     return;
 }
 
@@ -247,7 +252,7 @@ void DeleteDup(Node_t **head) {
     Node_t *detect = *head;
     Node_t *hold = tmp_head;
 
-    while (detect != NULL) {
+    while (detect->next != NULL) {
         if (detect->data == detect->next->data) {
             while (detect->data == detect->next->data) {
                 Node_t *tmp = detect->next->next;
@@ -262,8 +267,13 @@ void DeleteDup(Node_t **head) {
             free(detect);
             detect = hold->next;
 
-            if (!detect)
+            if (!detect) {
+                *head = tmp_head->next;
+                free(tmp_head);
                 return;
+            }
+
+            continue;
         }
 
         hold = detect;
