@@ -27,6 +27,12 @@ STATUS pop(stack_t *stk, element_t *e) {
     return OK;
 }
 
+/* Clear all the stack */
+void clearstack(stack_t *stk) {
+    stk->top = -1;
+    return;
+}
+
 /* Return the number of elements inside the stack */
 int length(stack_t *stk) {
     return stk->top + 1;

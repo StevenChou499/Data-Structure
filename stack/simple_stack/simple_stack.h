@@ -22,6 +22,9 @@ STATUS push(stack_t *stk, element_t e);
 /* Pop the top stack element to e and return OK, if the stack is empty return ERROR */
 STATUS pop(stack_t *stk, element_t *e);
 
+/* Clear all the stack */
+void clearstack(stack_t *stk);
+
 /* Return the number of elements inside the stack */
 int length(stack_t *stk);
 
