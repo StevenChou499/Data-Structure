@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-typedef char *string;
+typedef char **string;
 
 /* Assign a character array to string */
 void strassign(string str, char *source);
@@ -19,3 +20,6 @@ int strcmp(string str1, string str2);
 
 /* dest = str1 + str2 */
 void strcat(string dest, string str1, string str2);
+
+/* Print the stirng */
+void printstr(string str);
