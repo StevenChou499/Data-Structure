@@ -19,7 +19,7 @@ int main(void)
     element_t e;
     GetHead(&A, &e);
     printf("The head value is %d\n", e);
-    printf("The queue lenght is %u\n", QueueLength(&A));
+    printf("The queue length is %u\n", QueueLength(&A));
     PrintQueue(&A);
     printf("Dequeue...");
     DeQueue(&A, &e);
