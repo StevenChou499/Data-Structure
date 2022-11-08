@@ -4,46 +4,36 @@
 
 typedef int element_t;
 
-/**
- * @data: stores the element
- * @next: pointer to the next element
-*/
 typedef struct Node {
     element_t data;
     struct Node *next;
 } Node_t;
 
-/**
- * @headNode: a fake head node
- * @head: pointer to the real head element
- * @tail: pointer to the real tail element
-*/
 typedef struct Queue {
-    Node_t headNode;
     Node_t *head;
     Node_t *tail;
 } Queue;
 
 /* Initialize a queue */
-void InitQueue(Queue *q);
+void InitQueue(Queue **q);
 
 /* Destroy the created queue */
-void DestroyQueue(Queue *q);
+void DestroyQueue(Queue **q);
 
 /* Clear all the elements in the queue */
-void ClearQueue(Queue *q);
+void ClearQueue(Queue **q);
 
 /* If the queue is empty return true, else return false */
-bool QueueIsEmpty(Queue *q);
+bool QueueIsEmpty(Queue **q);
 
 /* Get the head element of the queue and copy to element e */
-void GetHead(Queue *q, element_t *e);
+void GetHead(Queue **q, element_t *e);
 
 /* Insert a new element e into the tail of the queue */
-void EnQueue(Queue *q, element_t e);
+void EnQueue(Queue **q, element_t e);
 
 /* Remove the first element of the queue and copy to element e */
-void DeQueue(Queue *q, element_t *e);
+void DeQueue(Queue **q, element_t *e);
 
 /* Return the queue length */
-unsigned int QueueLength(Queue *q);
+unsigned int QueueLength(Queue **q);
