@@ -34,7 +34,15 @@ void clrstr(string str) {
 }
 
 /* Calculate the lenght of the string and return (exclude the terminating NULL byte) */
-unsigned int strlen(string str);
+unsigned int strlen(string str) {
+    char *tmp = *str;
+    unsigned int length = 0;
+    while (*tmp) {
+        length++;
+        tmp++;
+    }
+    return length;
+}
 
 /* If str1 > str2 return -1, if str1 = str2 return 0, else return 1 */
 int strcmp(string str1, string str2);
