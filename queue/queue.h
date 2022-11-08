@@ -37,3 +37,6 @@ void DeQueue(Queue **q, element_t *e);
 
 /* Return the queue length */
 unsigned int QueueLength(Queue **q);
+
+/* Print all the elements inside the queue */
+void PrintQueue(Queue **q);

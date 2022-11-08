@@ -52,12 +52,13 @@ void EnQueue(Queue **q, element_t e) {
     Node_t *new_node = malloc(sizeof(Node_t));
     new_node->data = e;
     new_node->next = NULL;
-    if ((*q)->tail) {
+    if (!(*q)->tail) {
         (*q)->head = new_node;
         (*q)->tail = new_node;
         return;
     }
     (*q)->tail->next = new_node;
+    (*q)->tail = new_node;
     return;
 }
 
@@ -65,6 +66,13 @@ void EnQueue(Queue **q, element_t e) {
 void DeQueue(Queue **q, element_t *e) {
     if (!(*q)->head)
         return;
+    if ((*q)->head == (*q)->tail) {
+        *e = (*q)->head->data;
+        free((*q)->head);
+        (*q)->head = NULL;
+        (*q)->tail = NULL;
+        return;
+    }
     *e = (*q)->head->data;
     Node_t *tmp = (*q)->head;
     (*q)->head = (*q)->head->next;
@@ -78,9 +86,25 @@ unsigned int QueueLength(Queue **q) {
         return 0;
     unsigned int len = 0;
     Node_t *tmp = (*q)->head;
-    while (tmp != (*q)->tail) {
+    while (tmp) {
         len++;
         tmp = tmp->next;
     }
     return len;
+}
+
+/* Print all the elements inside the queue */
+void PrintQueue(Queue **q) {
+    if (!(*q)->head) {
+        fprintf(stderr, "There aren't any elements.\n");
+        return;
+    }
+    Node_t *tmp = (*q)->head;
+    fprintf(stdout, "(head)");
+    while (tmp) {
+        fprintf(stdout, "%3d-->", tmp->data);
+        tmp = tmp->next;
+    }
+    fprintf(stdout, "(NULL)\n");
+    return;
 }
