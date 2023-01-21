@@ -26,7 +26,7 @@ STATUS pop(stack_t *stk, element_t *e);
 void clearstack(stack_t *stk);
 
 /* Return the number of elements inside the stack */
-int length(stack_t *stk);
+int stacklength(stack_t *stk);
 
 /* Return whether the stack is now full */
 bool stackfull(stack_t *stk);

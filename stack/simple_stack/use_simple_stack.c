@@ -30,7 +30,7 @@ int main(void)
         printf("The stack is now full\n");
 
     printf("Getting stack length...\n");
-    printf("The stack length is %d\n", length(&A));
+    printf("The stack length is %d\n", stacklength(&A));
 
     printf("Clearing all the stack elements\n");
 

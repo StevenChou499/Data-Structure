@@ -34,7 +34,7 @@ void clearstack(stack_t *stk) {
 }
 
 /* Return the number of elements inside the stack */
-int length(stack_t *stk) {
+int stacklength(stack_t *stk) {
     return stk->top + 1;
 }
 
