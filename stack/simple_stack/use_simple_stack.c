@@ -16,8 +16,23 @@ int main(void)
 
     printstack(&A);
 
+    element_t e;
+
+    pop(&A, &e);
+    printf("Popping a element, the popped element is %d\n", e);
+    printstack(&A);
+
+    pop(&A, &e);
+    printf("Popping a element, the popped element is %d\n", e);
+    printstack(&A);
+
     if (stackfull(&A))
         printf("The stack is now full\n");
+
+    printf("Getting stack length...\n");
+    printf("The stack length is %d\n", length(&A));
+
+    printf("Clearing all the stack elements\n");
 
     clearstack(&A);
 
