@@ -26,6 +26,18 @@ int main(void)
 
     printf("The depth of the binary tree is %u\n", TreeDepth(root));
 
+    root = RotateRight(root);
+
+    printf("The right rotated tree : \n");
+    PreOrderTraverse(root);
+    printf("\n");
+
+    root = RotateLeft(root);
+
+    printf("The left rotated tree : \n");
+    PreOrderTraverse(root);
+    printf("\n");
+
     DestroyTree(root);
     return 0;
 }

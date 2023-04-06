@@ -27,3 +27,9 @@ void InOrderTraverse(TN_t *root);
 
 /* Postorderly traverse the binary search tree */
 void PostOrderTraverse(TN_t *root);
+
+/* Rotate the BST to the right and return the new root */
+TN_t *RotateRight(TN_t *root);
+
+/* Rotate the BST to the left and return the new root */
+TN_t *RotateLeft(TN_t *root);
