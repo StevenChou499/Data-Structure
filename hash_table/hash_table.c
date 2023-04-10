@@ -2,15 +2,26 @@
 
 /* Initialize the hash key */
 void Key_Init(Key_t *key) {
-    for (int i = 0; i < HASH_CAPACITY; i++)
-        key->
+    memset(key, 0, HASH_CAPACITY);
+    return;
 }
 
 /* Hash function */
-int hash_function(int value);
+int hash_function(int value) {
+    return value % HASH_CAPACITY;
+}
 
 /* Insert into hash bucket */
-int insert_bckt(int value);
+int insert_bckt(Key_t *key, int value) {
+    int hash_val = hash_function(value);
+    Bckt_t *insert = (key->Index + hash_val);
+    while (insert)
+        insert = insert->next;
+    insert = malloc(sizeof(Bckt_t));
+    insert->data = value;
+    insert->next = NULL;
+    return 0;
+}
 
 /* Check if the value is in the hash table */
 bool check_table(int value);
