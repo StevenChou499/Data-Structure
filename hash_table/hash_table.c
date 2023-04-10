@@ -1,26 +1,16 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-
-#define HASH_CAPACITY 17
-
-typedef struct bucket {
-    int data;
-    Bckt_t *next;
-} Bckt_t;
-
-typedef struct key {
-    Bckt_t Index[HASH_CAPACITY];
-} Key_t;
+#include "hash_table.h"
 
 /* Initialize the hash key */
-void Key_Init(Key_t *key);
+void Key_Init(Key_t *key) {
+    for (int i = 0; i < HASH_CAPACITY; i++)
+        key->
+}
 
 /* Hash function */
 int hash_function(int value);
 
 /* Insert into hash bucket */
-int insert_bckt(Key_t *key, int value);
+int insert_bckt(int value);
 
 /* Check if the value is in the hash table */
 bool check_table(int value);
